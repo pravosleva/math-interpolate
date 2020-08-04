@@ -1,0 +1,30 @@
+{
+  "name": "interpolate",
+  "version": "4.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "prepublish": "tsc",
+    "test": "mocha --reporter spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pravosleva/interpolate.git"
+  },
+  "keywords": [],
+  "author": "Den Pol",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pravosleva/interpolate/issues"
+  },
+  "homepage": "https://github.com/pravosleva/interpolate#readme",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "immutable": "^4.0.0-rc.12",
+    "mocha": "^8.1.1",
+    "prettier": "^2.0.5",
+    "typescript": "^3.9.7"
+  }
+}
