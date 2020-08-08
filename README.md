@@ -19,9 +19,9 @@ _So, you can use methods below_
 ### linear
 
 ```js
-import { linear } from 'math-interpolate';
+import { linear } from 'math-interpolate'
 
-console.log(linear({ x: 0.5, x1: 0, y1: 1, x2: 1, y2: 2 }));
+console.log(linear({ x: 0.5, x1: 0, y1: 1, x2: 1, y2: 2 }))
 // 1.5
 ```
 
@@ -42,7 +42,7 @@ y1= 1     o
 ### bilinear
 
 ```js
-import { bilinear } from 'math-interpolate';
+import { bilinear } from 'math-interpolate'
 
 console.log(
   bilinear({
@@ -57,7 +57,7 @@ console.log(
     x: 3,
     y: 3.5,
   }),
-);
+)
 // 377.75
 ```
 
@@ -83,10 +83,10 @@ And also, you can read more about bilinear interpolation [on wiki](https://ru.wi
 _Interpolate by table (only internal table values gives correct result) for example_
 
 ```js
-import { byInternalTable } from 'math-interpolate';
+import { byInternalTable } from 'math-interpolate'
 
-const temperature = -21.0;
-const percentage = 20.0;
+const temperature = -21.0
+const percentage = 20.0
 /*
   About table below:
   1st horizontal line (highest row as x axis) - temperature conditions template
@@ -98,7 +98,7 @@ const tableAsDoubleArray = [
   [25.0, 3.93, 3.93, 3.93, 3.95, 3.98, 4.0, 4.03, 4.05, 4.08],
   [37.0, 3.68, 3.68, 3.7, 3.72, 3.77, 3.82, 3.88, 3.94, 4.0],
   [45.0, 3.49, 3.49, 3.52, 3.56, 3.62, 3.69, 3.76, 3.82, 3.89],
-];
+]
 
 console.log(
   byInternalTable({
@@ -106,14 +106,14 @@ console.log(
     y: percentage,
     tableAsDoubleArray,
   }),
-);
+)
 // 3.982
 ```
 
 ### getKB
 
 ```js
-import { getKB } from 'math-interpolate';
+import { getKB } from 'math-interpolate'
 
 console.log(
   getKB({
@@ -122,7 +122,7 @@ console.log(
     x2: 6,
     y2: 5,
   }),
-);
+)
 // { k: -0.8,
 //   b: 1.8 }
 ```
@@ -130,7 +130,7 @@ console.log(
 ### getCommonPointByBisectionMethod
 
 ```js
-import { getCommonPointByBisectionMethod } from 'math-interpolate';
+import { getCommonPointByBisectionMethod } from 'math-interpolate'
 
 console.log(
   getCommonPointByBisectionMethod({
@@ -141,7 +141,7 @@ console.log(
     eps: 0.001, // 0.001 by default (accuracy)
     iMax: 1000, // 1000 by default (max iterations number)
   }),
-);
+)
 // { error: false,
 //   x: ~0,
 //   y: ~0 }
@@ -163,19 +163,19 @@ y1= 1     o                           o
 ```
 
 ```js
-import { getKB, getCommonPointByBisectionMethod } from 'math-interpolate';
+import { getKB, getCommonPointByBisectionMethod } from 'math-interpolate'
 
-const { k: k1, b: b1 } = getKB({ x1: 0, y1: 1, x2: 1, y2: 2 });
-const { k: k2, b: b2 } = getKB({ x1: 0, y1: 2, x2: 1, y2: 1 });
-const fn1 = (x) => k1 * x + b1;
-const fn2 = (x) => k2 * x + b2;
+const { k: k1, b: b1 } = getKB({ x1: 0, y1: 1, x2: 1, y2: 2 })
+const { k: k2, b: b2 } = getKB({ x1: 0, y1: 2, x2: 1, y2: 1 })
+const fn1 = (x) => k1 * x + b1
+const fn2 = (x) => k2 * x + b2
 
 console.log(
   getCommonPointByBisectionMethod({
     fn1,
     fn2,
   }),
-);
+)
 // { error: false, // & description field if true
 //   x: 0.5002021789550781,
 //   y: 1.5002021789550781 }
