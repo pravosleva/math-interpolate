@@ -4,7 +4,7 @@ import { expect, assert } from 'chai'
 import { linear, bilinear, byInternalTable, getKB, getCommonPointByBisectionMethod } from '../dist/index.js'
 import { Map } from 'immutable'
 
-describe('Test for static methods of Interpolate class.', () => {
+describe('Main test', () => {
   it('1. linear', () => {
     const expectedVal = 1.5
 
@@ -49,6 +49,26 @@ describe('Test for static methods of Interpolate class.', () => {
       'Fuckup :(',
     )
   })
+
+  /* TODO: External cases
+  it('3.2. byInternalTable (external x point)', () => {
+    const x = 5
+    const y = -1
+    const tableAsDoubleArray = [
+      [0.0, 5, 10, 15],
+      [-1, 1, 2, 3],
+      [-2, 0, 1, 2],
+    ]
+    const expectedVal = 1
+    const testedVal = byInternalTable({
+      x,
+      y,
+      tableAsDoubleArray,
+    })
+
+    assert(testedVal === expectedVal, `Fuckup :( testedVal is ${testedVal}`)
+  })
+  */
 
   it('4. getKB', () => {
     const expectedObj = Map({ k: 0.8, b: 0.19999999999999996 })
