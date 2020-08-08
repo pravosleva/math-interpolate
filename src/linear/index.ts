@@ -1,2 +1,2 @@
-export * from './linear';
-export * from './interfaces';
+export * from './linear'
+export * from './interfaces'

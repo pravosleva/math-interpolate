@@ -1,2 +1,2 @@
-export * from './byInternalTable';
-export * from './interfaces';
+export * from './byInternalTable'
+export * from './interfaces'

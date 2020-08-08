@@ -50,7 +50,7 @@
     "typescript": "^3.9.7"
   },
   "lint-staged": {
-    "*.{ts, tsx}": [
+    "*.{js, ts}": [
       "node_modules/.bin/eslint --max-warnings=0",
       "prettier --write"
     ]

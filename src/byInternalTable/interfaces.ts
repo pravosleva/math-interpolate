@@ -1,5 +1,5 @@
 export interface IByInternalTableProps {
-  x: number;
-  y: number;
-  tableAsDoubleArray: number[][];
+  x: number
+  y: number
+  tableAsDoubleArray: number[][]
 }

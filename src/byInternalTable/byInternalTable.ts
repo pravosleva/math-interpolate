@@ -1,5 +1,5 @@
-import { bilinear } from '../bilinear';
-import { IByInternalTableProps } from './interfaces';
+import { bilinear } from '../bilinear'
+import { IByInternalTableProps } from './interfaces'
 
 export const byInternalTable = ({ x, y, tableAsDoubleArray }: IByInternalTableProps): number => {
   /*
@@ -11,18 +11,18 @@ export const byInternalTable = ({ x, y, tableAsDoubleArray }: IByInternalTablePr
         head_y  | value   | value   | ..
     */
   try {
-    let i1;
-    let i2;
-    let j1;
-    let j2;
+    let i1
+    let i2
+    let j1
+    let j2
 
     for (i2 = 1; tableAsDoubleArray[i2][0] < y; i2++);
     // eslint-disable-next-line prefer-const
-    i1 = i2 - 1;
+    i1 = i2 - 1
 
     for (j2 = 1; tableAsDoubleArray[0][j2] < x; j2++);
     // eslint-disable-next-line prefer-const
-    j1 = j2 - 1;
+    j1 = j2 - 1
 
     // if (!j2) {
     //   i1 -= 1; i2 = i1;
@@ -43,8 +43,8 @@ export const byInternalTable = ({ x, y, tableAsDoubleArray }: IByInternalTablePr
       q12: tableAsDoubleArray[i1][j2],
       q21: tableAsDoubleArray[i2][j1],
       q22: tableAsDoubleArray[i2][j2],
-    });
+    })
   } catch (err) {
-    return 0.0;
+    return 0.0
   }
-};
+}

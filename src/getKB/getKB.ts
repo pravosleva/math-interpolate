@@ -1,8 +1,8 @@
-import { IGetKBProps, IResult } from './interfaces';
+import { IGetKBProps, IResult } from './interfaces'
 
 export const getKB = ({ x1, y1, x2, y2 }: IGetKBProps): IResult => {
-  const k = (y2 - y1) / (x2 - x1);
-  const b = y1 - k * x1;
+  const k = (y2 - y1) / (x2 - x1)
+  const b = y1 - k * x1
 
-  return { k, b };
-};
+  return { k, b }
+}

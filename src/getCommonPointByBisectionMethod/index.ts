@@ -1,2 +1,2 @@
-export * from './getCommonPointByBisectionMethod';
-export * from './interfaces';
+export * from './getCommonPointByBisectionMethod'
+export * from './interfaces'

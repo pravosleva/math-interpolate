@@ -1,2 +1,2 @@
-export * from './getKB';
-export * from './interfaces';
+export * from './getKB'
+export * from './interfaces'

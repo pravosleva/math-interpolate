@@ -1,2 +1,2 @@
-export * from './bilinear';
-export * from './interfaces';
+export * from './bilinear'
+export * from './interfaces'

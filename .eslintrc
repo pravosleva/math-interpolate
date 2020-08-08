@@ -16,8 +16,9 @@
   },
   "rules": {
     "object-curly-spacing": "off",
-    "max-len": ["error", { "code": 120 }],
+    "max-len": ["error", 120, 2, { "ignoreUrls": true }],
     "indent": "off",
-    "new-cap": "off"
+    "new-cap": "off",
+    "semi": [0, "always"]
   }
 }
