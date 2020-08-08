@@ -1,7 +1,7 @@
 import { linear } from '../linear';
 import { IBilinearProps } from './interfaces';
 
-export const bilinear = ({ x, y, x1, y1, x2, y2, q11, q12, q21, q22 }: IBilinearProps) => {
+export const bilinear = ({ x, y, x1, y1, x2, y2, q11, q12, q21, q22 }: IBilinearProps): number => {
   const interResult1 = linear({
     x,
     x1,

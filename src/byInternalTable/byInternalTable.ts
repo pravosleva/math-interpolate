@@ -1,7 +1,7 @@
 import { bilinear } from '../bilinear';
 import { IByInternalTableProps } from './interfaces';
 
-export const byInternalTable = ({ x, y, tableAsDoubleArray }: IByInternalTableProps) => {
+export const byInternalTable = ({ x, y, tableAsDoubleArray }: IByInternalTableProps): number => {
   /*
       SHORT DESCRIPTION
 
@@ -17,9 +17,11 @@ export const byInternalTable = ({ x, y, tableAsDoubleArray }: IByInternalTablePr
     let j2;
 
     for (i2 = 1; tableAsDoubleArray[i2][0] < y; i2++);
+    // eslint-disable-next-line prefer-const
     i1 = i2 - 1;
 
     for (j2 = 1; tableAsDoubleArray[0][j2] < x; j2++);
+    // eslint-disable-next-line prefer-const
     j1 = j2 - 1;
 
     // if (!j2) {

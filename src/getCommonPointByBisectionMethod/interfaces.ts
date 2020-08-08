@@ -6,3 +6,10 @@ export interface IGetCommonPointByBisectionMethod {
   eps?: number; // Требуемая точность
   iMax?: number; // Максимальное количество итераций
 }
+
+export interface IResult {
+  error: boolean;
+  descriptrion?: string;
+  x?: number;
+  y?: number;
+}

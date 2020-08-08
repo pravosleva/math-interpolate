@@ -4,3 +4,8 @@ export interface IGetKBProps {
   x2: number;
   y2: number;
 }
+
+export interface IResult {
+  k: number;
+  b: number;
+}
