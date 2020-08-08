@@ -7,7 +7,7 @@ export interface IGetCommonPointByBisectionMethod {
   iMax?: number // Максимальное количество итераций
 }
 
-export interface IResult {
+export interface IGetCommonPointByBisectionMethodResult {
   error: boolean
   descriptrion?: string
   x?: number

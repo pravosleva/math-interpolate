@@ -1,4 +1,4 @@
-import { IGetCommonPointByBisectionMethod, IResult } from './interfaces'
+import { IGetCommonPointByBisectionMethod, IGetCommonPointByBisectionMethodResult } from './interfaces'
 
 export const getCommonPointByBisectionMethod = ({
   fn1,
@@ -7,7 +7,7 @@ export const getCommonPointByBisectionMethod = ({
   xMax = 1000, // Правый конец отрезка
   eps = 0.001, // Требуемая точность
   iMax = 1000, // Максимальное количество итераций
-}: IGetCommonPointByBisectionMethod): IResult => {
+}: IGetCommonPointByBisectionMethod): IGetCommonPointByBisectionMethodResult => {
   let a = xMin
   let b = xMax
   // const fn1 = x => (line1Coeffs.k * x) + line1Coeffs.b;

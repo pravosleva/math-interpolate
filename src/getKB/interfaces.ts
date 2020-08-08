@@ -5,7 +5,7 @@ export interface IGetKBProps {
   y2: number
 }
 
-export interface IResult {
+export interface IGetKBResult {
   k: number
   b: number
 }
