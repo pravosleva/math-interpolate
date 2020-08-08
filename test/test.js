@@ -1,9 +1,7 @@
 'use strict';
 const { expect, assert } = require('chai');
-const Interpolate = require('../dist/index.js').default;
+const { linear, bilinear, byInternalTable, getKB, getCommonPointByBisectionMethod } = require('../dist/index.js');
 const Immutable = require('immutable');
-
-const { linear, bilinear, byInternalTable, getKB, getCommonPointByBisectionMethod } = Interpolate;
 
 describe('Test for static methods of Interpolate class.', () => {
   it('1. linear', () => {

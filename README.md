@@ -8,13 +8,6 @@ $ yarn add math-interpolate
 
 ## Interpolation cases usage
 
-```javascript
-import Interpolate from 'math-interpolate';
-
-// Or any static method of the class if necessary:
-import { linear } from 'math-interpolate';
-```
-
 _So, you can use methods below_
 
 - [linear](#linear) by `({ x, x1, y1, x2, y2 })`
@@ -25,8 +18,10 @@ _So, you can use methods below_
 
 ### linear
 
-```javascript
-console.log(Interpolate.linear({ x: 0.5, x1: 0, y1: 1, x2: 1, y2: 2 }));
+```js
+import { linear } from 'math-interpolate';
+
+console.log(linear({ x: 0.5, x1: 0, y1: 1, x2: 1, y2: 2 }));
 // 1.5
 ```
 
@@ -46,9 +41,11 @@ y1= 1     o
 
 ### bilinear
 
-```javascript
+```js
+import { bilinear } from 'math-interpolate';
+
 console.log(
-  Interpolate.bilinear({
+  bilinear({
     x1: 1,
     q11: 400,
     q12: 410,
@@ -85,7 +82,9 @@ And also, you can read more about bilinear interpolation [on wiki](https://ru.wi
 
 _Interpolate by table (only internal table values gives correct result) for example_
 
-```javascript
+```js
+import { byInternalTable } from 'math-interpolate';
+
 const temperature = -21.0;
 const percentage = 20.0;
 /*
@@ -102,7 +101,7 @@ const tableAsDoubleArray = [
 ];
 
 console.log(
-  Interpolate.byInternalTable({
+  byInternalTable({
     x: temperature,
     y: percentage,
     tableAsDoubleArray,
@@ -113,9 +112,11 @@ console.log(
 
 ### getKB
 
-```javascript
+```js
+import { getKB } from 'math-interpolate';
+
 console.log(
-  Interpolate.getKB({
+  getKB({
     x1: 1,
     y1: 1,
     x2: 6,
@@ -128,9 +129,11 @@ console.log(
 
 ### getCommonPointByBisectionMethod
 
-```javascript
+```js
+import { getCommonPointByBisectionMethod } from 'math-interpolate';
+
 console.log(
-  Interpolate.getCommonPointByBisectionMethod({
+  getCommonPointByBisectionMethod({
     fn1: (x) => x,
     fn2: (x) => -x,
     xMin: -200, // -1000 by default
@@ -159,14 +162,16 @@ y1= 1     o                           o
                         (~0.5 will be found)
 ```
 
-```javascript
-const { k: k1, b: b1 } = Interpolate.getKB({ x1: 0, y1: 1, x2: 1, y2: 2 });
-const { k: k2, b: b2 } = Interpolate.getKB({ x1: 0, y1: 2, x2: 1, y2: 1 });
+```js
+import { getKB, getCommonPointByBisectionMethod } from 'math-interpolate';
+
+const { k: k1, b: b1 } = getKB({ x1: 0, y1: 1, x2: 1, y2: 2 });
+const { k: k2, b: b2 } = getKB({ x1: 0, y1: 2, x2: 1, y2: 1 });
 const fn1 = (x) => k1 * x + b1;
 const fn2 = (x) => k2 * x + b2;
 
 console.log(
-  Interpolate.getCommonPointByBisectionMethod({
+  getCommonPointByBisectionMethod({
     fn1,
     fn2,
   }),

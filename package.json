@@ -1,6 +1,6 @@
 {
   "name": "math-interpolate",
-  "version": "4.0.1",
+  "version": "5.0.0",
   "description": "Math approximation tools (TypeScript)",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
