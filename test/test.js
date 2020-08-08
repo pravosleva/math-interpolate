@@ -1,7 +1,7 @@
 'use strict';
-const { expect, assert } = require('chai');
-const { linear, bilinear, byInternalTable, getKB, getCommonPointByBisectionMethod } = require('../dist/index.js');
-const Immutable = require('immutable');
+import { expect, assert } from 'chai';
+import { linear, bilinear, byInternalTable, getKB, getCommonPointByBisectionMethod } from '../dist/index.js';
+import { Map } from 'immutable';
 
 describe('Test for static methods of Interpolate class.', () => {
   it('1. linear', () => {
@@ -24,7 +24,6 @@ describe('Test for static methods of Interpolate class.', () => {
       q22: 590,
     });
 
-    // assert(testedVal === expectedVal, `Fuckup :( testedVal is ${testedVal}`);
     expect(testedVal).to.equal(expectedVal);
   });
 
@@ -51,20 +50,20 @@ describe('Test for static methods of Interpolate class.', () => {
   });
 
   it('4. getKB', () => {
-    const expectedObj = Immutable.Map({ k: 0.8, b: 0.19999999999999996 });
+    const expectedObj = Map({ k: 0.8, b: 0.19999999999999996 });
     const coeffs = getKB({
       x1: 1,
       y1: 1,
       x2: 6,
       y2: 5,
     });
-    const testedObj = Immutable.Map(coeffs);
+    const testedObj = Map(coeffs);
 
     assert(testedObj.equals(expectedObj), `Fuckup :( coeffs is ${JSON.stringify(coeffs)}`);
   });
 
   it('5. getCommonPointByBisectionMethod', () => {
-    const expectedObj = Immutable.Map({
+    const expectedObj = Map({
       error: false,
       x: 0.5002021789550781,
       y: 1.5002021789550781,
@@ -77,33 +76,8 @@ describe('Test for static methods of Interpolate class.', () => {
       fn1,
       fn2,
     });
-    const testedObj = Immutable.Map(result);
+    const testedObj = Map(result);
 
     assert(testedObj.equals(expectedObj), `Fuckup :( result is ${JSON.stringify(result)}`);
   });
 });
-
-/* SAMPLE
-describe('getPlural function test', () => {
-  it('should return Boys', () => {
-    var result = index.getPlural('Boy');
-    expect(result).to.equal('Boys');
-  });
-  it('should return Girls', () => {
-    var result = index.getPlural('Girl');
-    expect(result).to.equal('Girls');
-  });
-  it('should return Geese', () => {
-    var result = index.getPlural('Goose');
-    expect(result).to.equal('Geese');
-  });
-  it('should return Toys', () => {
-    var result = index.getPlural('Toy');
-    expect(result).to.equal('Toys');
-  });
-  it('should return Men', () => {
-    var result = index.getPlural('Man');
-    expect(result).to.equal('Men');
-  });
-});
-*/
