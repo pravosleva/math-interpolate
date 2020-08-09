@@ -1,6 +1,10 @@
 {
   "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint", "prettier", "unicorn"],
+  "plugins": [
+    "@typescript-eslint",
+    "prettier",
+    "unicorn"
+  ],
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/eslint-recommended",
@@ -16,9 +20,19 @@
   },
   "rules": {
     "object-curly-spacing": "off",
-    "max-len": ["error", 120, 2, { "ignoreUrls": true }],
+    "max-len": [
+      "error",
+      120,
+      2,
+      {
+        "ignoreUrls": true
+      }
+    ],
     "indent": "off",
     "new-cap": "off",
-    "semi": [0, "always"]
+    "semi": [
+      0,
+      "always"
+    ]
   }
 }

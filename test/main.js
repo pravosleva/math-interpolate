@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 'use strict'
 import { expect, assert } from 'chai'
-import { linear, bilinear, byInternalTable, getKB, getCommonPointByBisectionMethod } from '../dist/index.js'
+import { linear, bilinear, byTable as byInternalTable, getKB, getCommonPointByBisectionMethod } from '../dist/index.js'
 import { Map } from 'immutable'
 
 describe('Main test', () => {
@@ -66,7 +66,24 @@ describe('Main test', () => {
 
     assert(testedVal === expectedVal, `Fuckup: testedVal is ${testedVal}`)
   })
-  // 3.3 byInternalTable: External { x1 } point (Center Left space)
+  it('3.3 byInternalTable: External { x1 } point (Center Left space)', () => {
+    const x = -0.1
+    const y = 1
+    const tableAsDoubleArray = [
+      [0, 1, 2, 3],
+      [1, 2, 4, 8],
+      [2, 4, 8, 16],
+      [3, 8, 16, 32],
+    ]
+    const expectedVal = -8.780000000000001
+    const testedVal = byInternalTable({
+      x,
+      y,
+      tableAsDoubleArray,
+    })
+
+    assert(testedVal === expectedVal, `Fuckup: testedVal is ${testedVal}`)
+  })
   // 3.4 byInternalTable: External { x1, y2 } point (Bottom Left space)
   // 3.5 byInternalTable: External { y2 } point (Bottom Center space)
   // 3.6 byInternalTable: External { x2, y2 } point (Bottom Right space)
