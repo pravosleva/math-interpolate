@@ -7,7 +7,7 @@
   "scripts": {
     "build": "tsc",
     "prepublish": "tsc",
-    "test": "NODE_ENV=test mocha --require @babel/register @babel/polyfill './test/*.js'",
+    "test": "NODE_ENV=test mocha --require @babel/register './test/*.js'",
     "lint": "eslint --debug src/**/*.ts*",
     "lint:fix": "eslint src/**/*.ts* --fix"
   },

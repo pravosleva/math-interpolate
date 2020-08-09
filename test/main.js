@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 'use strict'
 import { expect, assert } from 'chai'
-import { linear, bilinear, byTable as byInternalTable, getKB, getCommonPointByBisectionMethod } from '../dist/index.js'
+import { linear, bilinear, byTable, getKB, getCommonPointByBisectionMethod } from '../dist/index.js'
 import { Map } from 'immutable'
 
 describe('Main test', () => {
@@ -28,7 +28,7 @@ describe('Main test', () => {
     expect(testedVal).to.equal(expectedVal)
   })
 
-  it('3.1 byInternalTable: Internal space', () => {
+  it('3.1 byTable: Internal space', () => {
     const temperature = -21.0
     const percentage = 20.0
     const dataObj = [
@@ -39,7 +39,7 @@ describe('Main test', () => {
       [45.0, 3.49, 3.49, 3.52, 3.56, 3.62, 3.69, 3.76, 3.82, 3.89],
     ]
     const expectedVal = 3.982
-    const testedVal = byInternalTable({
+    const testedVal = byTable({
       x: temperature,
       y: percentage,
       tableAsDoubleArray: dataObj,
@@ -49,7 +49,7 @@ describe('Main test', () => {
   })
 
   // TODO: External cases
-  it('3.2 byInternalTable: External { x1, y1 } point (Top Left space)', () => {
+  it('3.2 byTable: External { x1, y1 } point (Top Left space)', () => {
     const x = -5
     const y = -2
     const tableAsDoubleArray = [
@@ -58,7 +58,7 @@ describe('Main test', () => {
       [2, 0, 1],
     ]
     const expectedVal = -12
-    const testedVal = byInternalTable({
+    const testedVal = byTable({
       x,
       y,
       tableAsDoubleArray,
@@ -66,7 +66,7 @@ describe('Main test', () => {
 
     assert(testedVal === expectedVal, `Fuckup: testedVal is ${testedVal}`)
   })
-  it('3.3 byInternalTable: External { x1 } point (Center Left space)', () => {
+  it('3.3 byTable: External { x1 } point (Center Left space)', () => {
     const x = -0.1
     const y = 1
     const tableAsDoubleArray = [
@@ -75,8 +75,8 @@ describe('Main test', () => {
       [2, 4, 8, 16],
       [3, 8, 16, 32],
     ]
-    const expectedVal = -8.780000000000001
-    const testedVal = byInternalTable({
+    const expectedVal = 0.020000000000000046
+    const testedVal = byTable({
       x,
       y,
       tableAsDoubleArray,
@@ -84,11 +84,11 @@ describe('Main test', () => {
 
     assert(testedVal === expectedVal, `Fuckup: testedVal is ${testedVal}`)
   })
-  // 3.4 byInternalTable: External { x1, y2 } point (Bottom Left space)
-  // 3.5 byInternalTable: External { y2 } point (Bottom Center space)
-  // 3.6 byInternalTable: External { x2, y2 } point (Bottom Right space)
-  // 3.7 byInternalTable: External { x2 } point (Center Right space)
-  // 3.8 byInternalTable: External { x2, y1 } point (Top Right space)
+  // 3.4 byTable: External { x1, y2 } point (Bottom Left space)
+  // 3.5 byTable: External { y2 } point (Bottom Center space)
+  // 3.6 byTable: External { x2, y2 } point (Bottom Right space)
+  // 3.7 byTable: External { x2 } point (Center Right space)
+  // 3.8 byTable: External { x2, y1 } point (Top Right space)
 
   it('4. getKB', () => {
     const expectedObj = Map({ k: 0.8, b: 0.19999999999999996 })
