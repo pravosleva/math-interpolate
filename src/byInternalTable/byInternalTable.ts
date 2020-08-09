@@ -2,8 +2,8 @@
 import { bilinear } from '../bilinear'
 import { IByInternalTableProps } from './interfaces'
 
-/* TODO: External cases
-export const _byInternalTable2 = ({ x, y, tableAsDoubleArray }: IByInternalTableProps): number => {
+/* TODO: External cases */
+export const byInternalTable = ({ x, y, tableAsDoubleArray }: IByInternalTableProps): number => {
   // 0. Sort?
 
   // 1. Find points:
@@ -21,18 +21,18 @@ export const _byInternalTable2 = ({ x, y, tableAsDoubleArray }: IByInternalTable
   let isX2External: boolean = false
   let isY1External: boolean = false
   let isY2External: boolean = false
+  let result: number = 0
 
   // 1.1 Find nearest x1 & x2:
   tableAsDoubleArray.forEach((row, iR, t) => {
     if (iR === 0) {
-      if (x <= row[0]) {
-        x1 = x
-        x2 = row[0]
+      if (x <= row[1]) {
+        x1 = row[1]
+        x2 = row[2]
         isX1External = true
-        // q11 = t[0][]
       } else if (x >= row[row.length - 1]) {
-        x1 = row[row.length - 1]
-        x2 = x
+        x1 = row[row.length - 2]
+        x2 = row[row.length - 1]
         isX2External = true
       } else {
         row.forEach((val: number, i: number, a: number[]) => {
@@ -48,13 +48,13 @@ export const _byInternalTable2 = ({ x, y, tableAsDoubleArray }: IByInternalTable
   // 1.2 Find nearest y1 & y2:
   const yRow = tableAsDoubleArray.map((row) => row[0])
 
-  if (y <= yRow[0]) {
-    y1 = y
-    y2 = yRow[0]
+  if (y <= yRow[1]) {
+    y1 = yRow[1]
+    y2 = yRow[2]
     isY1External = true
   } else if (y >= yRow[yRow.length - 1]) {
-    y1 = yRow[yRow.length - 1]
-    y2 = y
+    y1 = yRow[yRow.length - 2]
+    y2 = yRow[yRow.length - 1]
     isY2External = true
   } else {
     yRow.forEach((val: number, i: number, a: number[]) => {
@@ -65,23 +65,78 @@ export const _byInternalTable2 = ({ x, y, tableAsDoubleArray }: IByInternalTable
     })
   }
 
-  // 2. Find qs:
+  // 2. Bilinear:
   switch (true) {
+    // Bacsic: Internal Table
+    case !isX1External && !isY1External && !isX2External && !isY2External:
+      let i1
+      let i2
+      let j1
+      let j2
+
+      for (i2 = 1; tableAsDoubleArray[i2][0] < y; i2++);
+      // eslint-disable-next-line prefer-const
+      i1 = i2 - 1
+
+      for (j2 = 1; tableAsDoubleArray[0][j2] < x; j2++);
+      // eslint-disable-next-line prefer-const
+      j1 = j2 - 1
+
+      result = bilinear({
+        x,
+        y,
+        x1: tableAsDoubleArray[0][j1],
+        y1: tableAsDoubleArray[i1][0],
+        x2: tableAsDoubleArray[0][j2],
+        y2: tableAsDoubleArray[i2][0],
+        q11: tableAsDoubleArray[i1][j1],
+        q12: tableAsDoubleArray[i1][j2],
+        q21: tableAsDoubleArray[i2][j1],
+        q22: tableAsDoubleArray[i2][j2],
+      })
+      break
     // Top Left space
     // @ts-ignore TS2678
-    case isX1External && isY1External:
-      q22 = tableAsDoubleArray[1][1]
-      q21 = tableAsDoubleArray[0][1]
-      q12 = tableAsDoubleArray[1][0]
-      // q11 = ?
+    case isX1External && isY1External && !isX2External && !isY2External:
+      q11 = bilinear({
+        x,
+        y,
+        // @ts-ignore Variable 'x1' is used before being assigned.
+        x1,
+        q11: tableAsDoubleArray[1][1],
+        q12: tableAsDoubleArray[2][1],
+        // @ts-ignore
+        y1,
+        // @ts-ignore
+        x2,
+        // @ts-ignore
+        y2,
+        q21: tableAsDoubleArray[1][2],
+        q22: tableAsDoubleArray[2][2],
+      })
+      q12 = tableAsDoubleArray[2][1]
+      q21 = tableAsDoubleArray[1][2]
+      q22 = tableAsDoubleArray[2][2]
+      result = bilinear({
+        x,
+        y,
+        // @ts-ignore
+        x1,
+        // @ts-ignore
+        y1,
+        // @ts-ignore
+        x2,
+        // @ts-ignore
+        y2,
+        q11,
+        q12,
+        q21,
+        q22,
+      })
       break
     // Bootom Left space
     // @ts-ignore TS2678
     case isX1External && isY2External:
-      q21 = tableAsDoubleArray[tableAsDoubleArray.length - 2][1]
-      q22 = tableAsDoubleArray[tableAsDoubleArray.length - 1][1]
-      q11 = tableAsDoubleArray[tableAsDoubleArray.length - 2][0]
-      // q12 = ?
       break
     // Left Center space
     // @ts-ignore TS2678
@@ -114,11 +169,10 @@ export const _byInternalTable2 = ({ x, y, tableAsDoubleArray }: IByInternalTable
       break
   }
 
-  return 0
+  return result
 }
-*/
 
-export const byInternalTable = ({ x, y, tableAsDoubleArray }: IByInternalTableProps): number => {
+export const _byInternalTable = ({ x, y, tableAsDoubleArray }: IByInternalTableProps): number => {
   /*
     SHORT DESCRIPTION
 

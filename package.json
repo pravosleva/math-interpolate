@@ -1,13 +1,13 @@
 {
   "name": "math-interpolate",
-  "version": "5.0.1",
+  "version": "5.0.2",
   "description": "Math approximation tools (TypeScript)",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
     "prepublish": "tsc",
-    "test": "mocha --require @babel/register @babel/polyfill './test/*test.js'",
+    "test": "mocha --require @babel/register @babel/polyfill './test/*.js'",
     "lint": "eslint --debug src/**/*.ts*",
     "lint:fix": "eslint src/**/*.ts* --fix"
   },

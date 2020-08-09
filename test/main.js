@@ -28,7 +28,7 @@ describe('Main test', () => {
     expect(testedVal).to.equal(expectedVal)
   })
 
-  it('3.1. byInternalTable (internal point)', () => {
+  it('3.1 byInternalTable: Internal space', () => {
     const temperature = -21.0
     const percentage = 20.0
     const dataObj = [
@@ -39,36 +39,39 @@ describe('Main test', () => {
       [45.0, 3.49, 3.49, 3.52, 3.56, 3.62, 3.69, 3.76, 3.82, 3.89],
     ]
     const expectedVal = 3.982
+    const testedVal = byInternalTable({
+      x: temperature,
+      y: percentage,
+      tableAsDoubleArray: dataObj,
+    })
 
-    assert(
-      byInternalTable({
-        x: temperature,
-        y: percentage,
-        tableAsDoubleArray: dataObj,
-      }) === expectedVal,
-      'Fuckup :(',
-    )
+    assert(testedVal === expectedVal, `Fuckup: testedVal is ${testedVal}`)
   })
 
-  /* TODO: External cases
-  it('3.2. byInternalTable (external x point)', () => {
-    const x = 5
-    const y = -1
+  // TODO: External cases
+  it('3.2 byInternalTable: External { x1, y1 } point (Top Left space)', () => {
+    const x = -5
+    const y = -2
     const tableAsDoubleArray = [
-      [0.0, 5, 10, 15],
-      [-1, 1, 2, 3],
-      [-2, 0, 1, 2],
+      [0, 5, 10],
+      [1, 1, 2],
+      [2, 0, 1],
     ]
-    const expectedVal = 1
+    const expectedVal = -12
     const testedVal = byInternalTable({
       x,
       y,
       tableAsDoubleArray,
     })
 
-    assert(testedVal === expectedVal, `Fuckup :( testedVal is ${testedVal}`)
+    assert(testedVal === expectedVal, `Fuckup: testedVal is ${testedVal}`)
   })
-  */
+  // 3.3 byInternalTable: External { x1 } point (Center Left space)
+  // 3.4 byInternalTable: External { x1, y2 } point (Bottom Left space)
+  // 3.5 byInternalTable: External { y2 } point (Bottom Center space)
+  // 3.6 byInternalTable: External { x2, y2 } point (Bottom Right space)
+  // 3.7 byInternalTable: External { x2 } point (Center Right space)
+  // 3.8 byInternalTable: External { x2, y1 } point (Top Right space)
 
   it('4. getKB', () => {
     const expectedObj = Map({ k: 0.8, b: 0.19999999999999996 })
