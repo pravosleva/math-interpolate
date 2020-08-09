@@ -162,10 +162,8 @@ export const byTable = ({ x, y, tableAsDoubleArray }: IByTableProps): number => 
       q22 = tableAsDoubleArray[2][2]
 
       result = bilinear({
-        x, y,
         // @ts-ignore
-        x1, y1, x2, y2,
-        q11, q12, q21, q22,
+        x, y, x1, y1, x2, y2, q11, q12, q21, q22,
       })
       break
 
@@ -195,15 +193,40 @@ export const byTable = ({ x, y, tableAsDoubleArray }: IByTableProps): number => 
       q22 = tableAsDoubleArray[2][1]
 
       result = bilinear({
-        x, y,
         // @ts-ignore
-        x1, y1, x2, y2,
-        q11, q12, q21, q22,
+        x, y, x1, y1, x2, y2, q11, q12, q21, q22,
       })
       break
 
     // 3.4
     case 'bottom-left':
+      q11 = tableAsDoubleArray[tableAsDoubleArray.length - 1][1]
+      q12 = tableAsDoubleArray[tableAsDoubleArray.length - 1][2]
+      q21 = bilinear({
+        // @ts-ignore
+        x, y: tableAsDoubleArray[quasiCoords21[1]][0],
+        // @ts-ignore Variable 'x1' is used before being assigned.
+        x1, y1, x2, y2,
+        q11: tableAsDoubleArray[tableAsDoubleArray.length - 2][1],
+        q12: tableAsDoubleArray[tableAsDoubleArray.length - 1][1],
+        q21: tableAsDoubleArray[tableAsDoubleArray.length - 2][2],
+        q22: tableAsDoubleArray[tableAsDoubleArray.length - 1][2],
+      })
+      q22 = bilinear({
+        // @ts-ignore
+        x, y: tableAsDoubleArray[quasiCoords22[1]][0],
+        // @ts-ignore Variable 'x1' is used before being assigned.
+        x1, y1, x2, y2,
+        q11: tableAsDoubleArray[tableAsDoubleArray.length - 2][1],
+        q12: tableAsDoubleArray[tableAsDoubleArray.length - 1][1],
+        q21: tableAsDoubleArray[tableAsDoubleArray.length - 2][2],
+        q22: tableAsDoubleArray[tableAsDoubleArray.length - 1][2],
+      })
+
+      result = bilinear({
+        // @ts-ignore
+        x, y, x1, y1, x2, y2, q11, q12, q21, q22,
+      })
       break
 
     // 3.5

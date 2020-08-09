@@ -84,7 +84,25 @@ describe('Main test', () => {
 
     assert(testedVal === expectedVal, `Fuckup: testedVal is ${testedVal}`)
   })
-  // 3.4 byTable: External { x1, y2 } point (Bottom Left space)
+  it('3.4 byTable: External { x1, y2 } point (Bottom Left space)', () => {
+    const x = 0.9
+    const y = 4
+    const tableAsDoubleArray = [
+      [0, 1, 2, 3],
+      [1, 2, 4, 8],
+      [2, 4, 8, 16],
+      [3, 8, 16, 32],
+    ]
+    const expectedVal = 0.020000000000000046
+    const testedVal = byTable({
+      x,
+      y,
+      tableAsDoubleArray,
+    })
+
+    assert(testedVal === expectedVal, `Fuckup: testedVal is ${testedVal}`)
+  })
+
   // 3.5 byTable: External { y2 } point (Bottom Center space)
   // 3.6 byTable: External { x2, y2 } point (Bottom Right space)
   // 3.7 byTable: External { x2 } point (Center Right space)
